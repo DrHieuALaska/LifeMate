@@ -1,0 +1,23 @@
+{
+  "python_hash_seed_runs": {
+    "1": {
+      "manifest_hashes_normalized_newlines": [
+        "8c8d87b9ced60016ba21f33a317b944c7e0f31f7c6f943d495c6daa06b736457",
+        "7964ba65a03ff08db4c427e5047d60e926809ff4fdbd9bf08e49e137a927b827",
+        "4b98dae62d9a514855268be0efe6455e1a779677fe6fe271033ddb6cbd96a4ee"
+      ],
+      "match_written_manifests": true
+    },
+    "137": {
+      "manifest_hashes_normalized_newlines": [
+        "8c8d87b9ced60016ba21f33a317b944c7e0f31f7c6f943d495c6daa06b736457",
+        "7964ba65a03ff08db4c427e5047d60e926809ff4fdbd9bf08e49e137a927b827",
+        "4b98dae62d9a514855268be0efe6455e1a779677fe6fe271033ddb6cbd96a4ee"
+      ],
+      "match_written_manifests": true
+    }
+  },
+  "identical_across_processes": true,
+  "all_match_written": true,
+  "newline_policy": "CRLF and LF normalized before digest comparison"
+}

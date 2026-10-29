@@ -1,0 +1,7 @@
+﻿from,to,count
+read,write,943
+write,write,392
+read,read,386
+write,read,229
+read,meta,132
+write,meta,25

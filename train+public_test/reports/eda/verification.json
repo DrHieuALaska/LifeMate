@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "sample_id_unique": true,
+    "frequency_equals_calls": true,
+    "kind_equals_calls": true,
+    "app_equals_calls": true,
+    "catalog_kind_equals_tools": true,
+    "transitions_equal_sum_l_minus_1": true,
+    "trajectory_classes_cover_samples": true,
+    "difficulty_covers_samples": true,
+    "split_index_disjoint_and_cover": true,
+    "split_id_disjoint": true,
+    "pipeline_restricted_access_attempts_zero": true,
+    "availability_covers_gold_selection": true,
+    "accepted_result_counts_equal_gold": true,
+    "duplicate_groups_kept_together": true,
+    "plot_totals_match_summary": true,
+    "figure_files_exist": true,
+    "table_files_exist": true,
+    "report_privacy_scan": true,
+    "report_exists": true,
+    "manifests_exist": true
+  },
+  "all_passed": true,
+  "figure_count": 16,
+  "table_count": 38,
+  "privacy": "No raw utterances, profile/location values, argument/result payloads, or state values are exported.",
+  "privacy_scan": {
+    "long_profile_values_checked": 39,
+    "profile_value_matches_in_report": 0,
+    "phone_like_strings_in_report": 0,
+    "scope": "Exact profile values >=8 characters, plus Vietnamese phone-like strings; short names, paraphrases and other PII require code review."
+  }
+}

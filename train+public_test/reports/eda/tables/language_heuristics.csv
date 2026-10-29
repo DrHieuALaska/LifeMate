@@ -1,0 +1,12 @@
+﻿marker,regex,samples,percent
+relative_time,\b(mai|mốt|hôm nay|tối nay|sáng nay|chiều nay|ngày kia|tuần sau|tháng sau|lát nữa|nữa)\b,508,32.88
+clock_time,"\b(\d{1,2}\s*(giờ|h|phút)|sáng|chiều|tối|trưa|đêm)\b",546,35.34
+date,"\b(ngày\s+\d+|tháng\s+\d+|thứ\s+(hai|ba|tư|năm|sáu|bảy)|chủ nhật|\d{1,2}[/-]\d{1,2})\b",73,4.725
+digit,\d,207,13.398
+quantity,\b(\d+\s*(cái|chiếc|lần|nghìn|ngàn|triệu|đồng|phút|giờ|độ|phần)|một|hai|ba|bốn|năm|sáu|bảy|tám|chín|mười)\b,845,54.693
+contact,\b(gọi|nhắn|liên hệ|danh bạ|số điện thoại|gửi.*cho)\b,368,23.819
+negation,\b(đừng|không|chớ|thôi|khỏi)\b,481,31.133
+correction,\b(nhầm|à không|ý là|đổi lại|sửa lại|thay vì)\b,64,4.142
+conjunction,\b(rồi|sau đó|và|tiếp theo|xong|đồng thời)\b,577,37.346
+reference,\b(nó|cái đó|người đó|lúc nãy|vừa rồi|đó|ấy|như cũ|tiếp|lại)\b,608,39.353
+english_indicator,\b(wifi|wi fi|bluetooth|email|mail|app|online|meeting|deadline|playlist|youtube|spotify|sms|tv|ok|okay|check|team|reminder)\b,182,11.78
