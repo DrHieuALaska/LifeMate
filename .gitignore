@@ -1,5 +1,21 @@
-train/
-public_test/
-README_DATA.md
-VERSION
 __pycache__/
+
+# Confidential source data, derived reports, manifests, predictions and model files.
+/train+public_test/
+/artifacts/
+/models/
+/checkpoints/
+*.py[cod]
+*.safetensors
+*.ckpt
+*.pt
+*.pth
+*.egg-info/
+/build/
+/dist/
+.venv/
+.env
+.env.*
+!.env.example
+.ipynb_checkpoints/
+.DS_Store

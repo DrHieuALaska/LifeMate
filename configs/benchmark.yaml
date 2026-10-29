@@ -1,0 +1,8 @@
+{
+  "data_root": "train+public_test",
+  "manifest": "train+public_test/reports/eda/validation_split/dev_ids.txt",
+  "mode": "trace",
+  "no_state_comparison": false,
+  "include_raw_traces": false,
+  "limit": null
+}

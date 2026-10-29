@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lifemate"
+version = "0.1.0"
+description = "Train-only LifeMate evaluation and local inference interfaces"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+eda = ["numpy>=1.26", "matplotlib>=3.8"]
+
+[project.scripts]
+lifemate-dev = "lifemate.evaluation.benchmark:main"
+lifemate-explore = "lifemate.exploration:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

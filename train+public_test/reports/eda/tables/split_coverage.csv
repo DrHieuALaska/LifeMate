@@ -1,4 +1,0 @@
-﻿partition,target_samples,actual_samples,unique_gold_tools,missing_gold_tools,difficulty,history_samples
-train,1159,1159,146,[],"{""complex"": 367, ""moderate"": 462, ""simple"": 330}",763
-dev,193,193,139,"[""chat_ott.call"", ""email.send"", ""home_security.arm"", ""reminders.delete"", ""ride_hailing.get_quotes"", ""smart_home.scene_run"", ""tv.tune""]","{""complex"": 63, ""moderate"": 78, ""simple"": 52}",128
-holdout,193,193,141,"[""email.reply"", ""email.send"", ""reminders.delete"", ""ride_hailing.get_quotes"", ""smart_home.scene_run""]","{""simple"": 53, ""complex"": 63, ""moderate"": 77}",127
