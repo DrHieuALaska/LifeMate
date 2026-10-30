@@ -40,7 +40,7 @@ Qwen native có từ Transformers 5.13; notebook dùng 5.14.1, không cài packa
 
 Cache cũ ghi tổng 9,5913 giờ, mono 16 kHz PCM_16, dài nhất 22,3335 s; signal audit chỉ xét 2.000 file, có 39 cờ nhiều quiet frames, chưa chứng minh noise/SNR. Benchmark có 18% câu >10 s, validation khoảng 4,2%: điểm 100 audio không đại diện hoàn toàn cho validation. Chưa có speaker ID đáng tin để chứng minh hai tập khác người nói.
 
-Bản ghi cũ báo đã sửa nhầm split do tên thư mục `train+public_test` và loại sample submission khỏi dữ liệu. Khi có cache, đối chiếu SHA256 trong `analysis/audit_verification.json`, join bằng `ref_uid`, kiểm tra nhóm hội thoại/hash overlap; không ghép theo thứ tự dòng hoặc chia random lại. Hướng dẫn: [local_validation](local_validation.md).
+Bản ghi cũ báo đã sửa nhầm split do tên thư mục `train+public_test` và loại sample submission khỏi dữ liệu. Khi có cache, đối chiếu SHA256 trong `analysis/audit_verification.json`, join bằng `ref_uid`, kiểm tra nhóm hội thoại/hash overlap; không ghép theo thứ tự dòng hoặc chia random lại. Hướng dẫn: [hướng dẫn ASR](../README.md).
 
 Cấu hình nằm trong `src/lifemate/asr/notebook/lifemate_asr_benchmark.ipynb` và `src/lifemate/asr/asr_benchmark.py`:
 

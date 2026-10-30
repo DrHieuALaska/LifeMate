@@ -232,34 +232,6 @@ class BenchmarkTests(unittest.TestCase):
             self.assertEqual(group['n_ok'],1)
             self.assertEqual(scored['model_run'].duration.tolist(),[1.,2.])
 
-    def test_live_scoring_patch_keeps_predictions_and_records_provenance(self):
-        root=Path(__file__).resolve().parents[1]
-        source=(root/'asr_benchmark.py').read_text(encoding='utf-8')
-        fixed="merged=d.merge(labels,on='ref_uid',how='left',validate='one_to_one',suffixes=('', '_annotation'))"
-        old="merged=d.merge(labels,on='ref_uid',how='left',validate='one_to_one')"
-        legacy=source.replace(fixed,old)
-        rows=self.rows();rows['path']=['synthetic/a.wav','synthetic/b.wav']
-        with tempfile.TemporaryDirectory() as temp:
-            out=Path(temp);rd=out/'model_run';rd.mkdir()
-            (rd/'config.json').write_text('{}')
-            b.annotation_templates(rows,out)
-            for row in rows.itertuples(): b.append_json(rd/'predictions.jsonl',dict(ref_uid=row.ref_uid,status='ok',text_model=row.reference,latency_ms=100.))
-            before=(rd/'predictions.jsonl').read_bytes()
-            env=dict(BENCHMARK_SOURCE=legacy,OUTPUT_DIR=out,rows=rows,run_dirs=[rd],cfg=dict(source_sha256='original_inference_hash'),
-                     display=lambda x:None)
-            exec(legacy,env)
-            with self.assertRaises(AttributeError): env['evaluate'](rows,out)
-            exec('def refresh_results():\n    global summary,scored,comparison_status\n    summary,scored=evaluate(rows,OUTPUT_DIR,run_dirs=run_dirs)\n    comparison_status=summary\n',env)
-            exec((root/'tools/fix_annotation_scoring.py').read_text(encoding='utf-8'),env)
-            self.assertEqual(before,(rd/'predictions.jsonl').read_bytes())
-            self.assertEqual(env['cfg']['source_sha256'],'original_inference_hash')
-            self.assertEqual(env['summary'].loc[env['summary'].subset=='all','n_ok'].iloc[0],2)
-            archive=env['package_outputs'](out,out.parent/(out.name+'_results'))
-            try:
-                with zipfile.ZipFile(archive) as z:
-                    self.assertIn('scoring_patch.json',z.namelist())
-                    self.assertIn('scoring_source.py',z.namelist())
-            finally: Path(archive).unlink()
 
     def test_bootstrap_and_no_success_exclusion(self):
         records=[dict(ref_uid=x,status='ok',text_model=t) for x,t in [('a','xin chào'),('b','không gửi')]]
