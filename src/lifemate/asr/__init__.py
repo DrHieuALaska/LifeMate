@@ -1,3 +1,4 @@
 """ASR integration interfaces."""
 from .base import ASR
-__all__ = ['ASR']
+from .phowhisper import ASRError, PhoWhisperASR
+__all__ = ['ASR', 'ASRError', 'PhoWhisperASR']

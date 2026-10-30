@@ -1,0 +1,13 @@
+# Private competition inputs, outputs and local checkpoints.
+/data/
+/analysis/*
+!/analysis/README.md
+/artifacts/
+/models/
+/checkpoints/
+*.wav
+*.mp3
+*.flac
+*.zip
+*.jsonl
+*.csv
