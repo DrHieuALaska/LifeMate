@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LifeMate · Audio review</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<aside class="sidebar">
+  <a class="brand" href="/" aria-label="LifeMate trang chủ"><span class="brand-icon">L</span><span>LifeMate<small>ASR WORKSPACE</small></span></a>
+  <div class="side-heading">THƯ VIỆN REVIEW <span id="total-count">—</span></div>
+  <nav aria-label="Lọc audio" id="view-tabs">
+    <button class="view active" data-view="all">Tất cả audio <span id="count-all">0</span></button>
+    <button class="view" data-view="errors">Cần đối chiếu <span id="count-errors">0</span></button>
+    <button class="view" data-view="disagree">Hai model khác nhau <span id="count-disagree">0</span></button>
+    <button class="view" data-view="unreviewed">Chưa nghe <span id="count-unreviewed">0</span></button>
+    <button class="view" data-view="reviewed">Đã nghe <span id="count-reviewed">0</span></button>
+  </nav>
+  <div class="side-heading">CHỌN AUDIO</div>
+  <label class="sr-only" for="search">Tìm audio</label><input id="search" type="search" placeholder="Tìm nội dung, ID, hội thoại…">
+  <div class="side-filters"><select id="kind" aria-label="Loại audio"><option value="">Mọi loại</option><option value="final">Hiện tại</option><option value="history">History</option></select><select id="tag" aria-label="Nhóm nội dung"><option value="">Mọi nhóm</option><option value="digits">Chứa chữ số</option><option value="english">Gợi ý từ tiếng Anh</option></select></div>
+  <p id="list-count" class="small">Chưa nạp dữ liệu</p><div id="audio-list" class="audio-list" aria-label="Danh sách audio"></div>
+  <div class="side-footer"><span class="status-dot"></span> Local workspace · Không gửi audio ra ngoài</div>
+</aside>
+<main>
+  <header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>Validation review</b></div><div class="actions"><button id="load-button" class="button">Nạp ZIP review</button><button id="import-button" class="button">Nhập ghi chú</button><button id="json-export" class="button primary" disabled>Sao lưu JSON ↗</button><button id="csv-export" class="button" disabled>Xuất CSV</button></div></header>
+  <input type="file" id="bundle-file" accept=".zip" hidden><input type="file" id="notes-file" accept=".json" hidden>
+  <div id="message" class="message" role="status" hidden></div>
+  <section id="welcome" class="welcome">
+    <span class="eyebrow">LISTEN. COMPARE. UNDERSTAND.</span><h1>Nghe từng câu.<br>Hiểu từng lỗi.</h1>
+    <p>Đối chiếu hynt và Sherpa trên cùng tập valid. Nghe audio, kiểm tra reference và ghi lại những lỗi ảnh hưởng đến hành động.</p>
+    <div class="welcome-steps"><div><span>01</span><b>Xuất predictions</b><p>Chạy notebook <code>export_valid_review</code> trên Kaggle với hai output continuation.</p></div><div><span>02</span><b>Nạp ZIP nhỏ</b><p>Chọn <code>finetune_valid_review.zip</code>. Audio được đọc trực tiếp từ ZIP dataset local.</p></div><div><span>03</span><b>Nghe và ghi chú</b><p>Ghi chú tự lưu trên máy. Xuất JSON để sao lưu hoặc CSV để tổng hợp.</p></div></div>
+    <button id="welcome-load" class="button primary large">Chọn finetune_valid_review.zip →</button>
+    <p class="small" id="dataset-status"></p><p class="small">ZIP handoff chỉ chứa config/source, chưa có predictions nên không dùng để nạp trang này.</p>
+  </section>
+  <div id="workspace" hidden>
+    <section class="page-title"><div><span class="eyebrow">CÙNG AUDIO · HAI MODEL</span><h1>Validation review</h1><p id="run-description"></p></div><div class="progress-block"><span id="progress-text"></span><progress id="progress" max="504" value="0"></progress></div></section>
+    <div class="notice"><span>i</span><p>Điểm trên valid đã dùng chọn checkpoint. Màu đánh dấu chỉ là khác biệt văn bản; hãy nghe trước khi kết luận đúng ý nghĩa.</p><button id="details-button" class="text-button">Chi tiết run</button></div>
+    <details id="run-details"><summary>Thông tin đối chiếu</summary><pre id="run-meta"></pre></details>
+    <section class="metrics" aria-label="Chỉ số toàn tập"><div class="metric"><span>HYNT · EXACT MATCH</span><strong id="hynt-em">—</strong><small id="hynt-exact"></small></div><div class="metric"><span>HYNT · WER / CER</span><strong id="hynt-wer">—</strong><small id="hynt-cer"></small></div><div class="metric sherpa"><span>SHERPA · EXACT MATCH</span><strong id="sherpa_vi-em">—</strong><small id="sherpa_vi-exact"></small></div><div class="metric sherpa"><span>SHERPA · WER / CER</span><strong id="sherpa_vi-wer">—</strong><small id="sherpa_vi-cer"></small></div></section>
+    <section id="empty" class="empty" hidden>Không có audio phù hợp. Thử đổi bộ lọc hoặc từ khóa.</section>
+    <div id="review-card">
+      <section class="listen-card"><div class="card-top"><div><span id="row-kind" class="badge"></span><span id="row-position" class="small"></span><h2 id="row-title"></h2><p id="row-id" class="small"></p></div><div class="navigation"><button id="prev" class="button" aria-label="Audio trước">←</button><button id="next" class="button" aria-label="Audio tiếp">→</button></div></div><div class="player"><audio id="player" controls preload="none"></audio><select id="speed" aria-label="Tốc độ phát"><option value="0.75">0.75×</option><option value="1" selected>1×</option><option value="1.25">1.25×</option><option value="1.5">1.5×</option></select></div><div id="audio-error" class="error-text" hidden></div><div class="reference"><span class="label">REFERENCE ĐƯỢC CUNG CẤP</span><p id="reference"></p></div></section>
+      <section class="comparison"><article class="transcript-card"><div class="model-top"><span class="model-icon">H</span><div><h3>hynt Zipformer</h3><span id="hynt-epoch" class="small"></span></div><span id="hynt-match" class="badge"></span></div><div id="hynt-text" class="transcript"></div><div id="hynt-edit" class="edit-info"></div><label>Đánh giá sau khi nghe<select data-note="hynt_judgement"><option value="">Chưa đánh giá</option><option value="correct">Đúng với audio</option><option value="same_meaning">Khác chữ, giữ ý nghĩa</option><option value="changed_meaning">Sai, thay đổi ý nghĩa</option><option value="unsure">Không chắc / cần nghe lại</option></select></label></article>
+      <article class="transcript-card"><div class="model-top"><span class="model-icon green">S</span><div><h3>Sherpa Zipformer</h3><span id="sherpa_vi-epoch" class="small"></span></div><span id="sherpa_vi-match" class="badge"></span></div><div id="sherpa_vi-text" class="transcript"></div><div id="sherpa_vi-edit" class="edit-info"></div><label>Đánh giá sau khi nghe<select data-note="sherpa_vi_judgement"><option value="">Chưa đánh giá</option><option value="correct">Đúng với audio</option><option value="same_meaning">Khác chữ, giữ ý nghĩa</option><option value="changed_meaning">Sai, thay đổi ý nghĩa</option><option value="unsure">Không chắc / cần nghe lại</option></select></label></article></section>
+      <section class="annotation-card"><div class="card-top"><div><span class="eyebrow">HUMAN REVIEW</span><h2>Ghi nhận sau khi nghe</h2></div><label class="listened"><input type="checkbox" data-note="listened"> Đã nghe audio</label></div><div class="annotation-grid"><label>Reference có khớp audio?<select data-note="reference_status"><option value="">Chưa xác định</option><option value="correct">Đúng</option><option value="incorrect">Sai / thiếu</option><option value="unsure">Không chắc</option></select></label><label>Reference sửa lại nếu cần<input data-note="corrected_reference" placeholder="Giữ nguyên reference gốc; ghi đề xuất sửa ở đây"></label></div><span class="label">NHÓM LỖI — CÓ THỂ CHỌN NHIỀU</span><div class="issue-tags" id="issue-tags"></div><label>Ghi chú<textarea data-note="comment" rows="3" placeholder="Ví dụ: nghe là ‘đừng chuyển’, model bỏ mất ‘đừng’, làm đổi hành động…"></textarea></label><div class="annotation-bottom"><span id="save-status" class="small" role="status">Ghi chú tự lưu trên máy</span><button id="save" class="button">Lưu ngay</button></div></section>
+    </div>
+    <footer class="page-footer">Reference sửa và nhãn người nghe được lưu riêng, không tự thay đổi điểm model hay dữ liệu train. <span>← → để chuyển câu khi không nhập ghi chú</span></footer>
+  </div>
+</main>
+</body></html>

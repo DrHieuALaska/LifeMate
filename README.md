@@ -1,6 +1,6 @@
 # LifeMate
 
-A shared Python project for a five-person team building a Vietnamese voice-to-action agent for the Zalo AI Challenge 2026. The working deliverable is an offline, **train-only evaluation benchmark**. No ASR model, LLM, fine-tuning pipeline or model-performance baseline is bundled.
+A shared Python project for a five-person team building a Vietnamese voice-to-action agent for the Zalo AI Challenge 2026. The core deliverable is an offline, **train-only evaluation benchmark**. The [ASR workspace](src/lifemate/asr/README.md) also provides self-contained fine-tuning notebooks, aggregate validation results, and a local listening-review web app. Model weights, private datasets, and per-audio predictions are not bundled.
 
 ## Layout
 

@@ -11,3 +11,12 @@
 *.zip
 *.jsonl
 *.csv
+
+# Local-only builders and checks.
+/tools/
+/tests/
+
+# Explicitly authorized aggregate-only CSVs for teammate review.
+!/docs/results/finetune_summary.csv
+!/docs/results/finetune_epoch_metrics.csv
+!/docs/results/finetune_group_metrics.csv

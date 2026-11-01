@@ -1,0 +1,3 @@
+model,training_parameters,best_epoch_by_em,valid_audio,baseline_exact,best_exact,baseline_em_pct,best_em_pct,baseline_wer_pct,best_wer_pct,baseline_cer_pct,best_cer_pct,net_exact_gain,state,total_updates,split_fingerprint,independent_test,checkpoint_weights_verified
+hynt,153438074,9,504,98,242,19.444444,48.015873,21.429573,8.269096,15.153083,6.231134,144,completed,5770,90349b2b7b984bae1c70e344a6cc339f833ff768ea741d9147eaaeb48422d95f,false,false
+sherpa_vi,68646021,3,504,85,240,16.865079,47.619048,19.635599,8.058865,14.450194,5.769728,155,completed,5407,90349b2b7b984bae1c70e344a6cc339f833ff768ea741d9147eaaeb48422d95f,false,false
