@@ -15,6 +15,7 @@ src/lifemate/
   utils/                    Strict JSON, access guards, shared EDA heuristics
   exploration.py            Migrated reusable EDA implementation
 scripts/                    Checkout-friendly entrypoints and trivial smoke generator
+tools/review_app/            Local four-panel audio / input / reasoning / tools reviewer
 tests/                      Synthetic unit tests, including migrated EDA tests
 docs/                       Architecture, evaluation protocol and team workflow
 artifacts/                  Ignored local predictions and evaluation/EDA outputs
@@ -80,6 +81,15 @@ python scripts/explore_lifemate.py --root train+public_test --split train --outp
 This writes new local artifacts and does not overwrite the existing split manifests. Public-test EDA remains an explicit optional aggregate-only flag in the exploration tool; benchmark execution never reads public-test files. Review any newly generated split proposal before replacing the fixed benchmark manifest.
 
 ## Team and confidentiality
+
+For manual inspection of existing Kaggle outputs, use the standalone
+[four-panel result review app](tools/review_app/README.md). It runs locally with
+Python's standard library, keeps audio/results/annotations in ignored local
+paths, and can run without the optional private ASR valid snapshot. It does not
+execute predictions or change the train-only benchmark protocol.
+On Windows, place the extracted dataset at `../train+public_test` relative to
+the checkout and double-click `open_review.bat`; the launcher fetches missing
+Kaggle outputs on first use and opens the browser.
 
 Member 1 owns ASR; Member 2 agent control; Member 3 model infrastructure/local LLM adapters; Member 4 tools and grounding; Member 5 evaluation/data. [Team workflow](docs/team_workflow.md), [architecture](docs/architecture.md), and [contribution rules](CONTRIBUTING.md) define shared interfaces and review expectations.
 

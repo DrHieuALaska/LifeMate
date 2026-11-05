@@ -19,3 +19,10 @@ __pycache__/
 !.env.example
 .ipynb_checkpoints/
 .DS_Store
+
+# Local result-review inputs, annotations, machine configuration and private QA.
+/tools/review_app/config.json
+/tools/review_app/data/
+/tools/review_app/imports/
+/tools/review_app/*.log
+/tools/review_app/preview*.png

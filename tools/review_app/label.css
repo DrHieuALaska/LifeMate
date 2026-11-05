@@ -1,0 +1,59 @@
+.label-page{height:100vh;height:100dvh;overflow:hidden;display:flex;flex-direction:column}
+.label-page .topbar{flex:0 0 64px;height:64px;min-height:0;position:relative;padding:0 18px;z-index:5}
+.label-page .brand{gap:10px;min-width:0}.label-page .brand-mark{width:33px;height:33px;font-size:21px;border-radius:10px}
+.label-page h1{font-size:18px}.label-page h1 span{font-size:16px;margin-left:5px}.label-page .brand p{font-size:10px;margin-top:1px}
+#toggle-list{padding:4px 7px;font-size:17px;border-color:transparent;background:transparent}
+.header-actions{display:flex;align-items:center;gap:12px;font-size:11px;min-width:0}.header-actions a{color:var(--teal);text-decoration:none;white-space:nowrap}
+.header-actions a:hover{text-decoration:underline}.header-actions button{font-size:11px;padding:6px 10px}
+#save-status{color:var(--muted);font-size:10px;max-width:140px}#save{background:var(--teal);color:white;border-color:var(--teal)}
+.label-page .workspace{flex:1;min-height:0;display:grid;grid-template-columns:238px minmax(0,1fr);align-items:stretch;overflow:hidden}
+.label-page.sidebar-collapsed .workspace{grid-template-columns:minmax(0,1fr)}.sidebar-collapsed .sidebar{display:none}
+.label-page .sidebar{position:static;top:auto;height:auto;min-height:0;padding:14px 12px;gap:9px;overflow:hidden}
+.label-page .sidebar label{font-size:11px}.label-page .sidebar input,.label-page .sidebar select{padding:8px;font-size:11px}
+.label-page .list-caption{margin-top:4px}.label-page #sample-list{min-height:0;overscroll-behavior:contain;scrollbar-gutter:stable}
+.label-page .sample{padding:10px 9px;margin:3px 0}.label-page .sample-head{gap:6px}.label-page .sample-head>span:first-child{font-size:11px}
+.label-page .sample .status{font-size:9px;white-space:nowrap}.label-page .sample-snippet{font-size:11px;-webkit-line-clamp:2}
+.label-page main{display:flex;flex-direction:column;min-height:0;max-width:none;width:auto;padding:10px 14px 9px;overflow:hidden;margin:0}
+#sample-content{display:flex;flex-direction:column;flex:1;min-height:0;gap:10px}
+.label-page .selection-heading{flex:0 0 44px;margin:0;gap:10px;min-width:0}
+.label-page h2{font-size:20px;line-height:1.3;letter-spacing:-.3px}.label-page .selection-heading>div:first-child{min-width:0}
+.label-page #row-meta{font-size:9px;letter-spacing:.15px;margin:3px 0 0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:630px}
+.label-page .navigation{gap:7px}.label-page .navigation button{font-size:11px;padding:5px 9px}
+.panel-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:10px;flex:1;min-height:0}
+.review-panel{display:flex;flex-direction:column;min-height:0;min-width:0;border:1px solid var(--line);border-radius:10px;background:#fff;overflow:hidden}
+.panel-header{display:flex;justify-content:space-between;align-items:center;gap:8px;flex:0 0 43px;padding:8px 13px;border-bottom:1px solid var(--line);background:#fbfdfd}
+.panel-header h3{font-size:12px;gap:9px;white-space:nowrap}.panel-header h3 span{font-size:14px}.panel-header button{font-size:10px;padding:4px 8px}
+.panel-header .badge{font-size:9px;padding:3px 6px}.panel-header .muted{font-size:10px}
+.panel-scroll{overflow-y:auto;overflow-x:hidden;overscroll-behavior:contain;scrollbar-gutter:stable;min-height:0;flex:1;padding:11px 13px;scroll-behavior:smooth}
+.panel-scroll:focus-visible{outline:2px solid #9bcfc8;outline-offset:-3px}
+.panel-scroll pre{max-height:none;overflow:visible;font-size:11px;padding:9px;line-height:1.65;margin:8px 0;white-space:pre-wrap;overflow-wrap:anywhere}
+.panel-scroll details{margin-top:12px}.panel-scroll summary{font-size:11px;line-height:1.6}.panel-scroll .footnote{font-size:10px;line-height:1.6;margin-top:9px}
+.label-page #player{width:100%;height:32px;display:block;margin:4px 0 10px}
+.label-page .eyebrow{font-size:9px;letter-spacing:.7px}.label-page .reference{font-size:13px;line-height:1.7;padding:8px 10px;border-left:3px solid var(--teal);background:#f2f8f6;overflow-wrap:anywhere}
+.subheading{display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--line);padding-top:10px;margin-top:14px}.subheading h4{font-size:12px;margin:0}.subheading .muted{font-size:10px}
+.history-audio-item{padding:10px 0;border-bottom:1px solid #edf1f3}.history-audio-item:last-child{border-bottom:0}
+.history-audio-item .audio-turn-title{font-size:10px;font-weight:650;color:var(--teal);margin-bottom:5px}.history-audio-item audio{width:100%;height:30px;display:block;margin:5px 0}
+.history-audio-item p{font-size:12px;line-height:1.7;overflow-wrap:anywhere}.history-audio-item .asr-caption{font-size:9px;color:var(--muted)}
+.input-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;margin:0 0 10px}.input-item{padding:8px 9px;border:1px solid #e4ecef;background:#f8fafb;border-radius:7px}
+.input-key{font-size:9px;line-height:1.5;color:var(--muted);margin-bottom:4px;overflow-wrap:anywhere}.input-value{font-size:11px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}
+.history-summary{font-size:11px;line-height:1.6;color:var(--teal);font-weight:600;margin:8px 0}
+.label-page .turn{padding:8px 10px;margin:7px 0;font-size:12px}.label-page .turn p{white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.65}.turn .role{font-size:9px}.audio-reference{color:var(--teal);background:var(--soft);border-radius:5px;font-size:10px;padding:5px 8px}
+.label-page .call{margin-top:8px}.label-page .call-name{font-size:11px;padding:7px 9px}.label-page .call pre{padding:8px 10px;margin:0;background:white}
+#runtime{font-size:10px}.judgement-field{margin-top:13px}.manual-field{margin-top:12px}
+.manual-field>label,.judgement-field>label{display:block;font-size:11px;font-weight:600;margin-bottom:6px}
+textarea{display:block;width:100%;border:1px solid var(--line);border-radius:7px;padding:8px 10px;resize:vertical;min-height:65px;font:12px/1.7 "Segoe UI",Arial,sans-serif;color:var(--ink);background:#fff}
+textarea:focus{outline:2px solid #abd5ce;border-color:var(--teal)}#expected-output{font:11px/1.7 Consolas,monospace}.judgement-field select{font-size:11px;padding:8px}
+.editor-details{padding:8px 10px;border:1px solid var(--line);border-radius:7px;background:#fbfcfd}.editor-details>summary{font-weight:600;color:var(--teal)}
+.tool-search-bar{padding:9px 13px 0;flex:0 0 auto}.tool-search-bar input{padding:7px 9px;font-size:11px}
+.label-page #tools{max-height:none;overflow:visible;padding:0}.label-page .tool-group{margin-top:11px}.label-page .tool-group-title{font-size:9px}.label-page .tool-item{padding:7px 9px;margin:5px 0}
+.label-page .tool-item summary{font-size:11px;white-space:normal;overflow-wrap:anywhere}.label-page .tool-description{font-size:11px}.label-page .tool-item pre{font-size:10px}
+.label-page .completion{flex:0 0 39px;display:flex;justify-content:space-between;align-items:center;gap:12px;margin:0;padding:5px 0 0;border:0}
+.completion label{display:flex;gap:7px;align-items:center;font-size:11px}.completion input{width:auto}.completion button{font-size:11px;padding:7px 11px;background:var(--soft);color:var(--teal);border-color:#b6d9d2}
+.scroll-hint{font-size:10px;color:var(--muted)}
+#notes-dialog{border:1px solid var(--line);border-radius:12px;width:min(560px,calc(100vw - 28px));max-height:80vh;overflow:auto;padding:20px;color:var(--ink)}
+#notes-dialog::backdrop{background:rgba(20,40,50,.28)}.notes-heading{display:flex;justify-content:space-between;align-items:center;gap:15px}.notes-heading h3{font-size:16px;color:var(--ink)}.notes-heading button{font-size:11px}
+fieldset{border:0;padding:0;margin:18px 0}legend{font-size:12px;font-weight:600;margin-bottom:9px;padding:0}.issue-grid{display:flex;flex-wrap:wrap;gap:7px}.issue-grid label{display:flex;align-items:center;gap:6px;padding:6px 9px;background:#f8fafb;border:1px solid var(--line);border-radius:6px;font-size:11px}.issue-grid input{width:auto}
+#notes-dialog .footnote{font-size:11px;color:var(--muted);margin-top:12px}
+.label-page #error{position:fixed;z-index:20;top:65px;left:50%;transform:translateX(-50%);width:min(760px,calc(100vw - 24px));border:1px solid #e8be9e;border-radius:8px;box-shadow:0 5px 18px #0001;padding:10px 14px;font-size:12px}
+@media(max-width:1100px){.header-actions{gap:8px}.label-page .brand p{max-width:none}.label-page h1{font-size:16px}.label-page h1 span{font-size:14px}.label-page .workspace{grid-template-columns:210px minmax(0,1fr)}.label-page .sidebar{padding:12px 9px}.panel-header{padding:7px 10px}.panel-header h3 span{font-size:13px}.panel-scroll{padding:9px 10px}.scroll-hint{display:none}}
+@media(max-width:760px){.label-page .topbar{height:86px;flex:0 0 86px;flex-wrap:wrap;padding:7px 10px;gap:3px}.label-page .brand-mark{width:27px;height:27px;font-size:18px}.label-page .brand{gap:6px}.label-page h1{font-size:14px}.label-page h1 span{display:inline;font-size:12px;margin-left:4px}.label-page .brand p{font-size:9px}.header-actions{width:100%;justify-content:space-between;font-size:10px;gap:6px}.header-actions button{font-size:10px;padding:4px 7px}#save-status{font-size:9px;max-width:110px}.label-page main{padding:7px;gap:6px}#sample-content{gap:7px}.label-page .selection-heading{flex:0 0 47px;flex-wrap:nowrap;align-items:center;gap:6px}.label-page h2{font-size:13px}.label-page #row-meta{font-size:8px;max-width:195px}.label-page .navigation{gap:4px}.label-page .navigation button{font-size:9px;padding:4px 5px}#position{font-size:9px}.panel-grid{gap:6px}.panel-header{padding:6px;gap:3px;flex-basis:37px}.panel-header h3{font-size:10px;gap:5px}.panel-header h3 span{font-size:11px}.panel-header button{font-size:9px;padding:3px 5px}.panel-header .muted{display:none}.panel-header .badge{font-size:8px;padding:2px 3px}.panel-scroll{padding:8px}.input-summary{grid-template-columns:1fr;gap:6px}.label-page .completion{flex-basis:41px;gap:6px}.completion label{font-size:9px;line-height:1.5}.completion button{font-size:9px;padding:6px;max-width:135px}.label-page .sidebar{position:absolute;z-index:8;left:0;top:86px;bottom:0;width:min(300px,85vw);background:#fff;box-shadow:4px 0 20px #0002}.label-page .workspace{grid-template-columns:minmax(0,1fr)}.label-page .reference{font-size:11px}.input-value,.history-audio-item p{font-size:10px}.input-key{font-size:8px}.panel-scroll pre{font-size:10px}.panel-scroll summary{font-size:10px}.label-page #error{top:87px}}

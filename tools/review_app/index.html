@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="vi">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>LifeMate · Result Review</title><link rel="stylesheet" href="/style.css"><script src="/app.js" defer></script></head>
+<body>
+<header class="topbar"><div class="brand"><span class="brand-mark">L</span><div><h1>LifeMate <span>Result Review</span></h1><p>Nghe audio · So sánh ASR · Xem output và tool</p></div></div><a class="badge" href="/label">GÁN NHÃN PUBLIC TEST →</a></header>
+<div id="error" role="alert" hidden></div>
+<div class="workspace">
+<aside class="sidebar">
+  <label for="search">Tìm trong kết quả</label><input id="search" placeholder="ID, #số hội thoại, câu nói, tool…" type="search">
+  <div class="filters"><select id="kind" aria-label="Loại audio"><option value="">Mọi lượt nói</option><option value="final">Yêu cầu cuối</option><option value="history">Lượt trong lịch sử</option></select><select id="condition" aria-label="Lọc lỗi"><option value="all">Tất cả kết quả</option><option value="any_wrong">Ít nhất một model sai</option><option value="all_correct">Tất cả model đúng</option></select></div>
+  <div class="list-caption"><strong id="count">Đang tải…</strong><span>WER gốc</span></div>
+  <p id="conversation-count" class="muted"></p>
+  <nav id="sample-list" aria-label="Danh sách audio"></nav>
+</aside>
+<main>
+  <section id="overview" class="overview" aria-label="Tổng hợp bốn model"></section>
+  <div id="no-results" class="card empty-state" hidden>Không có audio phù hợp. Thử đổi bộ lọc hoặc từ khóa.</div>
+  <div id="sample-content">
+  <div class="selection-heading"><div><div id="row-meta" class="eyebrow"></div><h2 id="row-title">Đang tải kết quả…</h2></div><div class="navigation"><button id="prev" title="Mẫu trước">← Trước</button><span id="position"></span><button id="next" title="Mẫu tiếp theo">Sau →</button></div></div>
+  <section class="card audio-card"><div class="section-title"><h3>01 <span>Audio & câu chuẩn</span></h3><span id="duration" class="muted"></span></div><audio id="player" controls preload="metadata"></audio><div class="eyebrow">BẢN CHÉP CHUẨN · DATASET</div><p id="reference" class="reference"></p></section>
+  <section class="asr-section"><div class="section-title"><h3>02 <span>ASR của từng model</span></h3><span class="muted">Chữ đậm: từ thay thế hoặc thêm · dấu [−…]: từ thiếu</span></div><div id="predictions" class="prediction-grid"></div><p class="footnote">WER tính theo token cách nhau bằng khoảng trắng, bỏ dấu câu và hoa/thường. Chưa áp dụng quy tắc đồng nghĩa.</p></section>
+  <div class="detail-grid">
+    <section class="card output-card"><div class="section-title"><h3>03 <span>Output mong muốn</span></h3><button id="copy-output">Copy JSON</button></div><p id="output-source" class="muted"></p><div id="output-warning" class="notice" hidden></div><p id="assistant-reply" class="reply" hidden></p><div id="gold-calls"></div><details><summary>Toàn bộ output JSON · kết quả tool và final_state</summary><pre id="output-json"></pre></details><p class="footnote">Đây là nhãn chuẩn có sẵn. Các bản ASR chưa có output reasoning dự đoán.</p></section>
+    <section class="card tools-card"><div class="section-title"><h3>04 <span>Tool được phép</span></h3><span id="tool-count" class="badge"></span></div><p class="muted">Theo context.installed_apps của hội thoại này.</p><input id="tool-search" type="search" placeholder="Tìm tool hoặc mô tả…" aria-label="Tìm tool được phép"><div id="tools"></div></section>
+  </div>
+  <section class="card context-card"><div class="section-title"><h3>05 <span>Ngữ cảnh trước lượt nói</span></h3><span id="history-count" class="muted"></span></div><details id="history-details"><summary>Mở lịch sử hội thoại · có thể nghe từng lượt</summary><div id="history"></div></details><details><summary>Context JSON · thời gian, hồ sơ và ứng dụng</summary><pre id="context-json"></pre></details></section>
+  </div>
+</main>
+</div>
+</body></html>

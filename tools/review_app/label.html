@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LifeMate · Gán nhãn public test</title>
+<link rel="stylesheet" href="/style.css"><link rel="stylesheet" href="/label.css">
+<script src="/label.js" defer></script>
+</head>
+<body class="label-page">
+<header class="topbar">
+  <div class="brand"><button id="toggle-list" aria-label="Ẩn hoặc hiện danh sách hội thoại" aria-expanded="true">☰</button><span class="brand-mark">L</span><div><h1>LifeMate <span>Human Review</span></h1><p>Public test · <span id="total">—</span> hội thoại · Đã label <strong id="reviewed">0</strong></p></div></div>
+  <div class="header-actions"><a href="/valid">Valid 504</a><a href="/api/label/export.jsonl" download>Xuất nhãn</a><button id="open-notes">Ghi chú</button><span id="save-status" aria-live="polite">Chưa chỉnh sửa</span><button id="save">Lưu nhãn</button></div>
+</header>
+<div id="error" role="alert" hidden></div>
+<div class="workspace">
+<aside class="sidebar">
+  <label for="search">Tìm hội thoại</label><input id="search" type="search" placeholder="ID, #số thứ tự, ASR, tên tool…">
+  <select id="filter" aria-label="Lọc nhãn"><option value="all">Tất cả hội thoại</option><option value="pending">Chưa đánh dấu hoàn tất</option><option value="reviewed">Đã label xong</option><option value="asr_wrong">ASR được đánh giá sai</option><option value="reasoning_wrong">Reasoning được đánh giá sai</option><option value="runtime">Có cảnh báo chạy model</option></select>
+  <div class="list-caption"><strong id="count">Đang tải…</strong><span>Hội thoại</span></div>
+  <nav id="sample-list" aria-label="Danh sách hội thoại"></nav>
+</aside>
+<main>
+  <div id="no-results" class="card empty-state" hidden>Không có hội thoại phù hợp bộ lọc.</div>
+  <div id="sample-content">
+    <div class="selection-heading"><div><h2 id="row-title">Đang tải…</h2><div id="row-meta" class="eyebrow"></div></div><div class="navigation"><button id="prev">← Trước</button><span id="position"></span><button id="next">Sau →</button></div></div>
+    <div class="panel-grid">
+      <section class="review-panel" id="audio-panel">
+        <div class="panel-header"><h3>01 <span>Audio & ASR</span></h3><span id="duration" class="muted"></span></div>
+        <div class="panel-scroll" id="audio-scroll" tabindex="0" aria-label="Cuộn khung Audio và ASR">
+          <div class="current-audio"><div class="eyebrow">YÊU CẦU HIỆN TẠI</div><audio id="player" controls preload="metadata"></audio><p id="asr-text" class="reference"></p></div>
+          <details class="editor-details"><summary>Sửa bản chép & đánh giá ASR</summary>
+            <div class="manual-field"><label for="corrected-transcript">Bản chép đúng do bạn nhập</label><textarea id="corrected-transcript" rows="3" placeholder="Nghe rồi nhập bản chép sửa. Để trống nếu chưa chép lại."></textarea></div>
+            <div class="judgement-field"><label for="asr-judgement">Đánh giá ASR</label><select id="asr-judgement"><option value="">Chưa đánh giá</option><option value="correct">Đúng</option><option value="acceptable">Khác cách viết nhưng chấp nhận được</option><option value="wrong">Sai nội dung</option><option value="unsure">Chưa chắc / cần nghe lại</option></select></div>
+          </details>
+          <div class="subheading"><h4>Audio trong lịch sử</h4><span id="history-audio-count" class="muted"></span></div>
+          <div id="history-audio"></div>
+        </div>
+      </section>
+      <section class="review-panel" id="full-input-section">
+        <div class="panel-header"><h3>02 <span>Input & lịch sử text</span></h3><button id="copy-input" disabled>Copy JSON</button></div>
+        <div class="panel-scroll" id="input-scroll" tabindex="0" aria-label="Cuộn khung Input">
+          <div id="input-summary" class="input-summary"></div><p id="history-count" class="history-summary"></p>
+          <details open><summary>Lịch sử text · phản hồi và tool call</summary><div id="history"></div></details>
+          <details id="environment-details" open><summary>State môi trường đầu vào</summary><p class="footnote">Dữ liệu để tool tra cứu, không phải final_state hay toàn bộ prompt của model.</p><pre id="environment-json"></pre></details>
+          <details><summary>Input sau ASR · context + history + câu hiện tại</summary><pre id="agent-input-json"></pre></details>
+          <details><summary>Sample gốc nguyên bản</summary><pre id="original-input-json"></pre></details>
+          <details><summary>Context JSON</summary><pre id="context-json"></pre></details>
+          <details><summary>Toàn bộ input nguồn · schema tool và ASR cache</summary><pre id="full-input-json"></pre></details>
+          <p class="footnote">Record sau ASR được ghép từ sample gốc và cache của runner. Output Kaggle không lưu dump prompt LLM hoặc các tool response thực tế từng bước.</p>
+        </div>
+      </section>
+      <section class="review-panel" id="output-panel">
+        <div class="panel-header"><h3>03 <span>Output reasoning</span></h3><button id="copy-output">Copy JSON</button></div>
+        <div class="panel-scroll" id="output-scroll" tabindex="0" aria-label="Cuộn khung Output">
+          <p id="runtime" class="muted"></p><div id="prediction-calls"></div>
+          <details><summary>Output JSON nguyên bản · state_hash</summary><pre id="prediction-json"></pre></details>
+          <div class="judgement-field"><label for="reasoning-judgement">Đánh giá reasoning</label><select id="reasoning-judgement"><option value="">Chưa đánh giá</option><option value="correct">Đúng</option><option value="acceptable">Chấp nhận được</option><option value="wrong">Sai</option><option value="unsure">Chưa đủ thông tin / chưa chắc</option></select></div>
+          <details class="editor-details"><summary>Sửa output mong muốn · JSON tùy chọn</summary><div class="manual-field"><label for="expected-output">Nhãn output do bạn nhập</label><textarea id="expected-output" rows="6" spellcheck="false" placeholder='{"tool_calls": [{"name": "...", "arguments": {}}]}'></textarea></div></details>
+          <p class="footnote">Output dự đoán từ Kaggle. Trạng thái chạy không thể hiện độ chính xác.</p>
+        </div>
+      </section>
+      <section class="review-panel" id="tool-panel">
+        <div class="panel-header"><h3>04 <span>Tool được phép</span></h3><span id="tool-count" class="badge"></span></div>
+        <div class="tool-search-bar"><input id="tool-search" type="search" placeholder="Tìm tên tool hoặc mô tả…" aria-label="Tìm tool được phép"></div>
+        <div class="panel-scroll" id="tool-scroll" tabindex="0" aria-label="Cuộn khung Tool">
+          <p class="footnote">Theo context.installed_apps của hội thoại này.</p><div id="tools"></div>
+          <details><summary>Tool hệ thống trong catalog</summary><div id="meta-tools"></div></details>
+        </div>
+      </section>
+    </div>
+    <div class="completion"><label><input id="is-reviewed" type="checkbox"> Tôi đã xem xong hội thoại này</label><span class="scroll-hint">Cuộn riêng trong từng khung</span><button id="done-next">Lưu hoàn tất & mẫu tiếp →</button></div>
+  </div>
+</main>
+</div>
+<dialog id="notes-dialog">
+  <div class="notes-heading"><h3>Ghi chú & nhóm vấn đề</h3><button id="close-notes" aria-label="Đóng ghi chú">Đóng ✕</button></div>
+  <fieldset><legend>Nhóm vấn đề</legend><div id="issues" class="issue-grid"></div></fieldset>
+  <div class="manual-field"><label for="comment">Ghi chú</label><textarea id="comment" rows="5" placeholder="Sai tên người, số tiền, chọn nhầm tool…"></textarea></div>
+  <p class="footnote">Các thay đổi tự lưu trên máy. Có thể đóng cửa sổ để tiếp tục xem bốn khung.</p>
+</dialog>
+</body></html>

@@ -1,0 +1,7 @@
+{
+  "dataset_path": "../../../train+public_test.zip",
+  "public_results_dir": "imports/kaggle_20_sample_public_test/lifemate_benchmark_634",
+  "valid_snapshot": "data/review.json",
+  "annotation_path": "data/manual_public_labels.json",
+  "port": 8770
+}
